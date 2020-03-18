@@ -1,10 +1,11 @@
 import React from 'react';
+import './index.css';
 class Todo extends React.Component {
     render() {
         return (
             <li id={this.props.todoId}>
             <input onClick = {this.props.onStatusChange} className={this.props.todoState===true?"check":"check checked"} type="checkbox"></input>
-            <input className={this.props.todoState===true?"content-text":"completed"} type="text" defaultValue={this.props.todoText} disabled={this.props.todoState===false?true:false}></input>
+            <input onBlur={this.props.updateTodo} className={this.props.todoState===true?"content-text":"completed"} type="text" defaultValue={this.props.todoText} disabled={this.props.todoState===false?true:false}></input>
             <span onClick={this.props.removetodoFromtodosList} className="remove">×</span>
         </li>);
     }
@@ -15,7 +16,6 @@ class TodoList extends React.Component {
         super(props);
         this.state = { count: 0, todoList: [] ,filterType:'all'};
     }
-   //componentWillMount=()=>{
     storeStateInLocalstorage=()=>{
         window.localStorage.setItem('todoAppState',JSON.stringify(this.state));
     }
@@ -23,7 +23,6 @@ class TodoList extends React.Component {
     componentDidMount=()=>{
          window.onunload=this.storeStateInLocalstorage;
         const parsedTodoState = JSON.parse(window.localStorage.getItem('todoAppState'));
-        console.log(parsedTodoState);
         if(parsedTodoState!==null){
             this.setState({
                 count:parsedTodoState.count,
@@ -32,7 +31,17 @@ class TodoList extends React.Component {
             });
         }
     }
-
+    updateTodo = (event) =>{
+        const currentTodoId = parseInt(event.target.parentElement.id);
+        const updatedTodo = event.target.value;
+        const duplicateTodoList = [...this.state.todoList];
+        const currentTodo=duplicateTodoList.findIndex(todo=>{
+           return todo.todoId === currentTodoId;
+        });
+        duplicateTodoList[currentTodo].todo = updatedTodo;
+        console.log(duplicateTodoList);
+        this.setState({todoList:[...duplicateTodoList]});
+    }
     renderInactiveTodos=()=>{
         const inActiveTodos= this.state.todoList.filter((todo => {
             return (!todo.isActive);
@@ -112,7 +121,7 @@ class TodoList extends React.Component {
        let todosToRender = this.todosToRender();
        const activeTodoItemsCount = this.renderActiveTodos().length;
        const completedItemsCount = this.renderInactiveTodos().length;
-        return (<div>
+        return (<div >
             <p className='heading'>todos</p>
         <div className="todo-container" id='container'>
             <div className="list-container">
@@ -120,7 +129,7 @@ class TodoList extends React.Component {
                 <input onKeyDown={this.addTodo} type="text" id='addElement' className='add-element' placeholder='What needs to be done!' />
                 <ul id='todoList'>
                 { todosToRender.map((todo) => {
-       return <Todo key={todo.todoId} onStatusChange={this.onStatusChange} todoState ={todo.isActive} todoId={todo.todoId} todoText={todo.todo} removetodoFromtodosList = {this.removetodoFromtodosList} />;
+       return <Todo key={todo.todoId} updateTodo={this.updateTodo} onStatusChange={this.onStatusChange} todoState ={todo.isActive} todoId={todo.todoId} todoText={todo.todo} removetodoFromtodosList = {this.removetodoFromtodosList} />;
     })}
                 </ul>
             </div>

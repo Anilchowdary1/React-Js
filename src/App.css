@@ -1,4 +1,4 @@
-.App {
+/*.App {
   text-align: center;
 }
 .navbar{
@@ -42,14 +42,6 @@
   }
 }
 
-body {
-  background-color: #f5f5f5;
-  font-family: sans-serif;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
 .todo-container {
   font-family: sans-serif;
   display: flex;
@@ -58,6 +50,7 @@ body {
   background-color: #fff;
   max-width: 470px;
   border-radius: 2px;
+  margin:0 auto;
 }
 
 .heading {
@@ -109,12 +102,12 @@ ul li {
   padding: 3px 0px 3px 3px;
   margin: 5px 1px 3px 0px;
   border: 1px solid #DDDDDD;
-}*/
+}
  
 input[type=text]:focus {
   box-shadow: 0 0 5px rgba(81, 203, 238, 1);
   /*padding: 3px 0px 3px 3px;
-  margin: 5px 1px 3px 0px;*/
+  margin: 5px 1px 3px 0px;
   border: 1px solid rgba(81, 203, 238, 1);
 }
 
@@ -213,4 +206,4 @@ input[type=text]:focus {
 }
 .clear{
   width:150px;
-}
+}*/

@@ -1,0 +1,33 @@
+body{
+    font-family: sans-serif;
+}
+.search{
+    height: 30px;
+}
+.country-card{
+    width:100%;
+    transition: all .4s ease-in-out;
+}
+.country-card:hover{
+    transform: scale(1.1);
+}
+
+.countries{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-column-gap: 3.5rem;
+    grid-row-gap: 3.5rem;
+}
+.heading{
+    font-family: sans-serif;
+    font-size: 20px;
+}
+.toggle{
+    cursor: pointer;
+}
+.day-countries>div{
+    background-color: white;
+}
+.night-countries>div{
+    background-color: dark;
+}
