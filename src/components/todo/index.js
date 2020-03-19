@@ -23,7 +23,7 @@ class Todo extends React.Component {
 
     render() {
         return (
-            <li>
+            <li className='item'>
             <input onClick = {this.onStatusChange}  className="check" type="checkbox"></input><input className={this.state.status==='Active'?"content-text":"completed"} type="text" defaultValue={this.state.text} disabled={this.state.status==='Active'?false:true}></input><span className="remove">×</span>
         </li>);
     }

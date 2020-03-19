@@ -5,7 +5,7 @@ class Todo extends React.Component {
         return (
             <li id={this.props.todoId}>
             <input onClick = {this.props.onStatusChange} className={this.props.todoState===true?"check":"check checked"} type="checkbox"></input>
-            <input onBlur={this.props.updateTodo} className={this.props.todoState===true?"content-text":"completed"} type="text" defaultValue={this.props.todoText} disabled={this.props.todoState===false?true:false}></input>
+            <input onBlur={this.props.updateTodo} className={this.props.todoState===true?"content-text add-element":"completed add-element"} type="text" defaultValue={this.props.todoText} disabled={this.props.todoState===false?true:false}></input>
             <span onClick={this.props.removetodoFromtodosList} className="remove">×</span>
         </li>);
     }
@@ -123,7 +123,7 @@ class TodoList extends React.Component {
        const completedItemsCount = this.renderInactiveTodos().length;
         return (<div >
             <p className='heading'>todos</p>
-        <div className="todo-container" id='container'>
+        <div className={this.state.todoList.length===0?"todo-container":"todo-container paper-shadow"} id='container'>
             <div className="list-container">
                 <span className='toggle' id='all'>❯</span>
                 <input onKeyDown={this.addTodo} type="text" id='addElement' className='add-element' placeholder='What needs to be done!' />
@@ -133,7 +133,7 @@ class TodoList extends React.Component {
     })}
                 </ul>
             </div>
-            <div className={this.state.todoList.length===0?"data-info empty":"data-info shadow"}>
+            <div className={this.state.todoList.length===0?"data-info empty":"data-info"}>
                 <p id='itemsCount'>{activeTodoItemsCount} items left</p>
                 <div className="data-status">
                     <button onClick={this.changeFilterType} className={this.state.filterType==='all'?'filter':"in-active"} value='allItems' type='button'>All</button>
