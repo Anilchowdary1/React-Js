@@ -19,9 +19,7 @@ body{
     transform: scale(1.1);
     cursor: pointer;
 }
-.recharts-default-legend{
-    margin-top:20px !important;
-}
+
 .countries{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -39,6 +37,6 @@ body{
 .day-countries>div{
     background-color: white;
 }
-.night-countries>div{
-    background-color: dark;
+.night-countries>div,.night-mode-elements{
+    background-color: #2b3945;
 }

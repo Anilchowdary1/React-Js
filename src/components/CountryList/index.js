@@ -108,19 +108,19 @@ class CountryList extends React.Component{
         return(
             <div className={this.state.theme==='light'?"bg-light text-white":"bg-dark text-dark"}>
                 <header className="d-flex justify-content-between position-relative px-lg-10 px-xl-16 py-8 px-5 shadow p-4 mb-5  rounded align-items-center ">
-                    <a aria-current="page" className={this.state.theme==='light'?"title-heading px-3  text-xl-left text-dark":"title-heading px-3  text-xl-left text-light"} href="/">Where in the world?</a>
+                    <a aria-current="page" className={this.state.theme==='light'?"title-heading px-3  text-xl-left text-dark":"title-heading px-3  text-xl-left text-light"} href="/countrylist">Where in the world?</a>
                 <div className="d-flex text-capitalize px-3 align-items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="20" height="20" viewBox="0 0 16 16"><path fill={currentTheme==='light'?"#000":"#fff"} d="M13.2 11.9c-4.5 0-8.1-3.6-8.1-8.1 0-1.4.3-2.7.9-3.8-3.4.9-6 4.1-6 7.9C0 12.4 3.6 16 8.1 16c3.1 0 5.8-1.8 7.2-4.4-.6.2-1.3.3-2.1.3zM8.1 15C4.2 15 1 11.8 1 7.9c0-2.5 1.3-4.7 3.3-6-.2.6-.2 1.2-.2 1.9 0 5 4.1 9.1 9.1 9.2-1.4 1.2-3.2 2-5.1 2z"></path></svg>
                     <p onClick={this.changeTheme} className={currentTheme==='light'?"text-dark bg-light m-1 text-capitalize text-center toggle-theme":"toggle-theme text-light bg-dark text-capitalize text-center m-1 "}>{currentTheme==='light'? 'light mode':'dark mode'}</p>
                 </div>
                 </header>
-                <main className=" px-5 text-light px-lg-10 px-xl-16  w-100">
-                    <div className="d-flex px-3 justify-content-between align-items-center mb-3">
-                        <div  className="d-flex px-3 flex-wrap rounded shadow bg-white w-20 w-md-auto align-items-center">
-                        <img className="search w-10" src="https://res.cloudinary.com/dqcsk8rsc/image/upload/v1578427182/Search_1_1_1_dms40o.svg"></img>{/*eslint-disable-next-line*/}
-                            <input onKeyDown={this.searchCountries} className="text-grey w-90 light-mode-elements bg-left bg-no-repeat rounded  py-3 px-10 border-0 light-mode-elements mb-10 mb-md-0 " type="text" id="country" placeholder="Search for a country..." ></input>
+                <main className=" px-5 text-light px-lg-8 px-xl-16  w-100">
+                    <div className="d-flex px-2 justify-content-between align-items-center mb-3">
+                        <div  className={currentTheme==='light'?"d-flex px-3 flex-wrap rounded shadow bg-white w-20 w-md-auto align-items-center":"d-flex px-3 text-grey flex-wrap rounded shadow night-mode-elements w-20 w-md-auto align-items-center"}>
+                        <img className="search w-10" src="https://res.cloudinary.com/dqcsk8rsc/image/upload/v1578427182/Search_1_1_1_dms40o.svg" alt=""></img>{/*eslint-disable-next-line*/}
+                            <input onKeyDown={this.searchCountries} className={currentTheme==='light'?"text-grey w-90  rounded  py-3 px-10 border-0  mb-10 mb-md-0":"text-white w-90  rounded  py-3 px-10 border-0  mb-10 mb-md-0 night-mode-elements"} type="text" id="country" placeholder="Search for a country..." ></input>
                         </div>
-                        <select onChange={this.changeRegion} name="region" id="" className="m-2 bg-white border-0 px-4 py-2 light-mode-elements shadow p-3  bg-light rounded w-8/12 w-md-auto">
+                        <select onChange={this.changeRegion} name="region" id="" className={currentTheme==='light'?"m-2 bg-white border-0 px-3 py-2 shadow p-3  rounded w-8/12 w-md-auto":"m-2 text-white border-0 px-3 py-2 night-mode-elements shadow p-3 rounded w-8/12 w-md-auto"}>
                             <option value="All">All</option>
                             <option value="Africa">Africa</option>
                             <option value="Americas">Americas</option>

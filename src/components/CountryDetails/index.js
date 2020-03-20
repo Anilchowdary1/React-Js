@@ -1,5 +1,5 @@
 /* global covid19 */
-
+import './index.css';
 import React, { PureComponent, Component } from 'react';
  import {
    LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
@@ -46,10 +46,16 @@ goBack=()=>{
         width: '500px',
          height: '500px'
       }
+      const currencies = this.state.country.currencies.map((currencyDetails) => {
+        return currencyDetails.name;
+    });
+      const languages = this.state.country.languages.map((languageDetails) => {
+        return languageDetails.name;
+    });
     return (
       <div>
               <header className="d-flex justify-content-between position-relative px-lg-10 px-xl-16 py-8 px-5 shadow p-4  rounded align-items-center ">
-                    <a aria-current="page" className="title-heading px-3  text-xl-left text-dark" href="/">Where in the world?</a>
+                    <a aria-current="page" className="title-heading px-3  text-xl-left text-dark" href="/countrylist">Where in the world?</a>
                 <div className="d-flex text-capitalize px-3 align-items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="20" height="20" viewBox="0 0 16 16"><path fill="#000" d="M13.2 11.9c-4.5 0-8.1-3.6-8.1-8.1 0-1.4.3-2.7.9-3.8-3.4.9-6 4.1-6 7.9C0 12.4 3.6 16 8.1 16c3.1 0 5.8-1.8 7.2-4.4-.6.2-1.3.3-2.1.3zM8.1 15C4.2 15 1 11.8 1 7.9c0-2.5 1.3-4.7 3.3-6-.2.6-.2 1.2-.2 1.9 0 5 4.1 9.1 9.1 9.2-1.4 1.2-3.2 2-5.1 2z"></path></svg>
                     <p className="text-dark  text-capitalize text-center m-1 "> light mode</p>
@@ -76,16 +82,15 @@ goBack=()=>{
           <p className="mb-2"><b>Capital:</b> {this.state.country.capital}</p>
         </div>
         <div className="ml-4 mt-8 mt-md-0">
-          <p className="mb-2"><b>Top Level Domain:</b> {this.state.country.topLevelDomain[0]}</p>
-          <p className="mb-2"><b>Currencies:</b> {this.state.country.currencies[0].name}</p>
-           <p className="mb-2"><b>Languages:</b> {this.state.country.languages[0].name}</p> 
+          <p className="mb-2"><b>Top Level Domain:</b> {this.state.country.topLevelDomain}</p>
+          <p className="mb-2"><b>Currencies:</b> {currencies.join(", ")}</p>
+           <p className="mb-2"><b>Languages:</b> {languages.join(", ")}</p> 
           </div>
         </div>
         <div >
         </div>
         <p className="mb-2"><b>Covid-19 Report</b></p>
-        <div className="mb-8" style={rechartStyle}>
-
+        <div className="mb-8 chart" style={rechartStyle}>
         <LineChart
            width={600}
            height={450}
@@ -97,11 +102,13 @@ goBack=()=>{
                 <XAxis dataKey="date" />
                   <YAxis />
               <Tooltip />
-           {/* <Legend /> */}
+           <Legend />
               <Line type="monotone" dataKey="recovered" stroke="green" activeDot={{ r: 8 }} />
               <Line type="monotone" dataKey="confirmed" stroke="orange" />
               <Line type="monotone" dataKey="deaths" stroke="red" />
           </LineChart>
+           {/* :<h2>No data found</h2>
+         }  */}
           </div>
       </section>
       </div>
